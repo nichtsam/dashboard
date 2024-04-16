@@ -8,5 +8,13 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div className="grid min-h-[750px] grid-cols-9 grid-rows-6 gap-4 p-10">
+      <div className="col-span-2 border"></div>
+      <div className="col-span-2 border"></div>
+      <div className="col-span-2 border"></div>
+      <div className="col-span-3 row-span-9 border"></div>
+      <div className="col-span-6 row-span-8 border"></div>
+    </div>
+  );
 }
