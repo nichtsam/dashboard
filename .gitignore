@@ -1,6 +1,11 @@
+# IDE specific
+.vscode
+
 node_modules
 
 /.cache
 /build
-/public/build
 .env
+
+# generated files
+/app/components/ui/icons

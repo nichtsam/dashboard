@@ -7,8 +7,14 @@ import {
 } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import styles from "#app/styles/tailwind.css?url";
+import { Icon } from "./components/ui/icon";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+
+export const clientLoader = async () => {
+  await new Promise((res) => setTimeout(res, 3000));
+  return null;
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,5 +39,9 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  return (
+    <div className="fixed inset-0 flex items-center justify-center">
+      <Icon className="animate-spin" name="loader-circle" size="giant" />
+    </div>
+  );
 }
