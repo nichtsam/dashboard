@@ -6,13 +6,14 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
-import styles from "#app/styles/tailwind.css?url";
+import styles from "#app/styles/app.css?url";
 import { Icon } from "./components/ui/icon";
+import { sleep } from "./utils/misc";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const clientLoader = async () => {
-  await new Promise((res) => setTimeout(res, 3000));
+  await sleep(3000);
   return null;
 };
 

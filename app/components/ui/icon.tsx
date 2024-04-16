@@ -1,5 +1,6 @@
 import type { ReactNode, SVGProps } from "react";
 import { cn } from "#app/utils/ui";
+// eslint-disable-next-line import/no-unresolved
 import href from "./icons/sprite.svg";
 import { type IconName } from "@/icon-name";
 
