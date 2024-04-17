@@ -23,6 +23,7 @@
     "@tanstack/react-table": "8.16.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
+    "d3": "7.9.0",
     "dayjs": "1.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@remix-run/dev": "^2.8.1",
     "@sly-cli/sly": "1.10.0",
+    "@types/d3": "7.4.3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
