@@ -1,23 +1,33 @@
+import { clientLoader } from "#app/routes/_index";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import { Payment } from "./model";
 import { DataTable } from "./table";
+import { useFetcher, useLoaderData } from "@remix-run/react";
+import { useEffect, useState } from "react";
 
-export function PaymentHistory({
-  data,
-  hasMore,
-  isLoading,
-  loadMore,
-}: {
-  data: Payment[];
-  hasMore?: boolean;
-  isLoading?: boolean;
-  loadMore?: () => void;
-}) {
+export function PaymentHistory() {
+  const data = useLoaderData<typeof clientLoader>();
+  const fetcher = useFetcher<typeof clientLoader>();
+
+  const [payments, setPayments] = useState(data.payments);
+  const nextPage = fetcher.data ? fetcher.data.nextPage : data.nextPage;
+  const hasMore = !!nextPage;
+  const isLoading = fetcher.state != "idle";
+  const loadMore = () => {
+    fetcher.submit({ page: nextPage });
+  };
+
+  useEffect(() => {
+    if (fetcher.data) {
+      const morePayments = fetcher.data.payments;
+      setPayments((existingPayments) => [...existingPayments, ...morePayments]);
+    }
+  }, [fetcher.data]);
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
@@ -26,7 +36,7 @@ export function PaymentHistory({
         </AccordionTrigger>
         <AccordionContent>
           <DataTable
-            data={data}
+            data={payments}
             hasMore={hasMore}
             isLoading={isLoading}
             loadMore={loadMore}
